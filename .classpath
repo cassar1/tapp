@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Tomcat/apache-tomcat-7.0.52/lib/servlet-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/CPS3222/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/uom-unit-testing-environment-master/uom-unit-testing-environment-master/lib/mockito-all-1.9.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/uom-unit-testing-environment-master/uom-unit-testing-environment-master/lib/mockito-all-1.9.5-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/uom-unit-testing-environment-master/uom-unit-testing-environment-master/lib/mockito-all-1.9.5-sources.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
