@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="src" output="target/classes" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="tests"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Tomcat/apache-tomcat-7.0.52/lib/servlet-api.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/CPS3222/json-simple-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/uom-unit-testing-environment-master/uom-unit-testing-environment-master/lib/mockito-all-1.9.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/uom-unit-testing-environment-master/uom-unit-testing-environment-master/lib/mockito-all-1.9.5-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/uom-unit-testing-environment-master/uom-unit-testing-environment-master/lib/mockito-all-1.9.5-sources.jar"/>
-	<classpathentry kind="output" path="build/classes"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/3222Assign/mysql-connector-java-5.0.8-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/CucumberSample/lib/cucumber-core-1.1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/CucumberSample/lib/cucumber-html-0.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/CucumberSample/lib/cucumber-java-1.1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/CucumberSample/lib/cucumber-junit-1.1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/CucumberSample/lib/cucumber-jvm-deps-1.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/CucumberSample/lib/gherkin-2.12.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/CucumberSample/lib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/CucumberSample/lib/jchronic-0.2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jurgen/workspace2/CucumberSample/lib/junit-4.11.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>

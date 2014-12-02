@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package ="com.assign.models">
+   <class name="User" table="users">
+      <meta attribute="class-description">
+         This class contains the employee detail. 
+      </meta>
+      <id name="id" type="int" column="id">
+         <generator class="native"/>
+      </id>
+      <property name="username" column="username" type="string"/>
+      <property name="password" column="password" type="string"/>
+      <property name="name" column="name" type="string"/>
+      <property name="surname" column="surname" type="string"/>
+      <property name="dob" column="dob" type="string"/>
+      <property name="account_type" column="account_type" type="int"/>
+      <property name="credit_card" column="credit_card" type="string"/>
+      <property name="expiry_date" column="expiry_date" type="string"/>
+      <property name="cvv" column="cvv" type="string"/>
+      <property name="login_attempts" column="login_attempts" type="int"/>
+      <property name="blocked" column="blocked" type="boolean"/>
+      <property name="last_attempt" column="last_attempt" type="timestamp"/>
+
+   </class>
+</hibernate-mapping>
