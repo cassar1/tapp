@@ -27,22 +27,22 @@ public class BettingManagement implements Betting_management {
 	}
 
 	@Override
-	public boolean validate_bet(User user, int risk_level, int amount) {
+	public int validate_bet(User user, int risk_level, int amount) {
 		int type = user.getType();
 		if(type == 1)//free
 		{
 			if(risk_level != 0 || amount > 5 || get_number_bets(user) > 2)
-				return false;
+				return 0;
 			else
-				return true;
+				return 1;
 		}
 		else
 		{
 			int total = amount + get_total_amount(user);
 			if(total > 5000)
-				return false;
+				return 0;
 			else
-				return true;
+				return 1;
 		}
 
 	}

@@ -15,7 +15,9 @@
 		<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 			<form role="form" method="POST" action="login.html">
 				<h2>Login </h2>
-				${model.message}
+				<div id = "message">
+					${model.message}
+				</div>
 				<hr class="colorgraph">
 				<div class="form-group">
 					<input type="text" name="username_field" id="username_field" class="form-control input-lg" placeholder="UserName" tabindex="3">
@@ -26,7 +28,7 @@
 				<hr class="colorgraph">
 				
 				<div class="row">
-					<div class="col-xs-12 col-md-6"><input type="submit" value="Sign-In" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+					<div class="col-xs-12 col-md-6"><input type="submit" id="submitbtn" value="Sign-In" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
 				</div>
 				<div class="row">
 					<a href="registration.html">Register</a>

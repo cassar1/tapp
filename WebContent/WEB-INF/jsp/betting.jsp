@@ -23,8 +23,10 @@
 </head>
 	<body>
 		<div class="bs-example">
-		${message}
-	    <table class="table">
+		<div id = "message">
+			${model.message}
+		</div>
+	    <table id = "bets_table" class="table">
 	        <thead>
 	            <tr>
 	                <th>Row</th>
@@ -61,7 +63,7 @@
 
 	        </tbody>
 	    </table>
-      	<a href="#" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#basicModal">Place New Bet</a>
+      	<a href="#" id="place_bet" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#basicModal">Place New Bet</a>
 
 
 		<!-- modal-->
@@ -92,7 +94,7 @@
 					  </div>
 					  <div class="modal-footer">
 		                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		                <button type="submit" class="btn btn-primary">Place Bet</button>
+		                <button type="submit" id = "place_bet" class="btn btn-primary">Place Bet</button>
 		        </div>
 					</form>
 		            

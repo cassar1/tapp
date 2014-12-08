@@ -18,8 +18,18 @@
 		<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 			<form role="form" method="post">
 				<h2>Registration </h2>
+				<span style = "color : red">
 				${ model.message }
-				${ model}
+				</span>
+				<span id ="error_message">
+				${ model.incorrect0}
+				${ model.incorrect1}
+				${ model.incorrect2}
+				${ model.incorrect3}
+				${ model.incorrect4}
+				${ model.incorrect5}
+				${ model.incorrect6}
+				</span>
 				<hr class="colorgraph">
 				<div class="form-group">
 					<input type="text" name="username_field" id="username_field" class="form-control input-lg" placeholder="UserName" tabindex="3">
@@ -47,7 +57,7 @@
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
-							<select class="form-control" name = "type">
+							<select class="form-control" name = "type" id = "type">
 							  <option value="1">Free</option>
 							  <option value="2">Premium</option>
 							</select>
@@ -83,7 +93,7 @@
 				
 				<hr class="colorgraph">
 				<div class="row">
-					<div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+					<div class="col-xs-12 col-md-6"><input id = "submit" type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
 				</div>
 			</form>
 		</div>

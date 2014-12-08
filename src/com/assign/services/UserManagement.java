@@ -69,4 +69,16 @@ public class UserManagement implements User_management {
 		
 	}
 
+	@Override
+	public void test_before() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void test_after() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

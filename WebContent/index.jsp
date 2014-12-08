@@ -19,5 +19,13 @@
 			check Spring MVC Controller... @RequestMapping("/login"))
 		</h3>
 	</div>
+	<form method="GET" action = "index.html">
+		<input type="hidden" name = "test" value ="Beforetest"></input>
+		<button type="submit" id="btestbtn"></button>
+	</form>
+	<form method="GET" action = "index.html">
+		<input type="hidden" name = "test" value ="Aftertest"></input>
+		<button type="submit" id="atestbtn"></button>
+	</form>
 </body>
 </html>

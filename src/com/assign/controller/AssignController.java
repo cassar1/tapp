@@ -101,84 +101,30 @@ public class AssignController {
 		ModelMap model = new ModelMap();
 		if(valid_user)
 		{
-			manager.add_user(new_user);
-			model.addAttribute("message", "Registration was successful");
-			return new ModelAndView("login", "model", model);
-		}
-		else
-		{
-			
-			model.addAttribute("message", "Registration was unsuccessful, please try again");
-			for(int i = 0; i < incorrect_inputs.size();i++)
-				model.addAttribute("incorrect"+i, incorrect_inputs.get(i));
-			return new ModelAndView("registration", "model", model);
-		}
-		
-	}
-	/*@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView loggingIn(@RequestParam("username_field") String username,@RequestParam("password_field") String pass)
-	{
-		ModelMap model = new ModelMap();
-		if(userlogin.is_blocked())
-		{
-			Date first_login_time = userlogin.get_time();
-			Date current_time;
-			Calendar cal = Calendar.getInstance();
-	    	current_time = cal.getTime();
-	    	long diff = current_time.getTime() - first_login_time.getTime();        
-	    	long diffMinutes = diff / (60 * 1000);       
-	    	if(diffMinutes >= 5)
-	    		userlogin.unblock();
-		}
-		if(!userlogin.is_blocked())
-		{
-			UserManagement manager = new UserManagement();
-			manager.add_user(new User("Jurgen","cassar"));
-			User user = manager.validate_login(username, pass);
-			String message;		
-			if(userlogin == null)
+			User u = manager.get_user(new_user.getName());
+			if(u == null)
 			{
-				System.out.println("userlogin is null");
-				boolean logged_in;
-				if(user == null)
-					logged_in = false;
-				else
-					logged_in = true;
-				userlogin = new UserLogin(username,logged_in); 
-			}
-			else
-			{
-				System.out.println("userlogin is not null" + userlogin.getUsername());
-		    	if(user == null)
-		    		userlogin.increment_counter();
-		    	int counter = userlogin.getFailedTimes();
-		    	if(counter == 3)
-		    		userlogin.block();
-			}
-			
-			
-			if(user == null)
-			{
-				model.addAttribute("message", "Incorrect Credentials");
-				
+				manager.add_user(new_user);
+				model.addAttribute("message", "Registration was successful");
 				return new ModelAndView("login", "model", model);
 			}
 			else
 			{
-				BettingManagement betting = new BettingManagement();
-				user.account_type = 2;
-				ArrayList<Bet> user_bets = new ArrayList<Bet>();
-				user_bets = betting.get_all_bets(user); 
-				model.addAttribute("bet", user_bets);
-				message = "Welcome";
-				model.addAttribute("name", user.getUser());
-				return new ModelAndView("betting", "model", model);
-			}
+				model.addAttribute("message", "Username Already Exists");
+				return new ModelAndView("login", "model", model);
+			}	
 		}
-		model.addAttribute("message", "User is blocked for 5 minutes");
-		return new ModelAndView("login", "model", model);
+		else
+		{
+			
+			model.addAttribute("message", "Registration was unsuccessful, please try again<br/>Please Enter Correct inputs for the following Fields:<br/>");
+			for(int i = 0; i < incorrect_inputs.size();i++)
+				model.addAttribute("incorrect"+i, incorrect_inputs.get(i)+", ");
+			return new ModelAndView("registration", "model", model);
+		}
 		
-	}*/
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loggingIn(@RequestParam("username_field") String username,@RequestParam("password_field") String pass,HttpSession session)
 	{
@@ -222,10 +168,12 @@ public class AssignController {
 		}
 
 			user = manager.validate_login(username, pass);
+			System.out.println("----------------------------------------------");
 			String message;				
 			if(user == null)
 			{
 				user = manager.get_user(username);
+				System.out.println("----------------------------------------------");
 				if(user != null)
 				{
 
@@ -262,6 +210,24 @@ public class AssignController {
 		/*model.addAttribute("message", "User is blocked for 5 minutes");
 		return new ModelAndView("login", "model", model);*/
 		
+	}
+	
+	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public ModelAndView testing_after(@RequestParam("test") String test)
+	{
+		UserManagementDB manager = new UserManagementDB();
+		if(test.equals("Aftertest"))
+		{
+			System.out.println("AFTER TEST");
+			manager.test_after();
+		}else
+		{
+			System.out.println("BEFORE TEST");
+			manager.test_before();
+		}
+		ModelMap m  = new ModelMap();
+		return new ModelAndView("login", "model", m);
 	}
 }
 

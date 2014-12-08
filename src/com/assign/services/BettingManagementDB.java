@@ -25,31 +25,37 @@ public class BettingManagementDB implements Betting_management{
 
 	@Override
 	public boolean place_bet(Bet bet) {
+		session =  HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
         System.out.println("begin adding");
         session.save(bet);
         session.getTransaction().commit();
         System.out.println("finish adding");
+        session.close();
         return true;
 	}
 
 	@Override
-	public boolean validate_bet(User user, int risk_level, int amount) {
+	public int validate_bet(User user, int risk_level, int amount) {
 		int type = user.getType();
-		if(type == 0)//free
-		{
-			if(risk_level != 0 || amount > 5 || get_number_bets(user) > 2)
-				return false;
+		if(type == 1)//free
+		{//1 good, 2 risk level, 3, bad amount, 4 exceed number of bets
+			if(risk_level != 1)
+				return 2;
+			else if(amount > 5)
+				return 3;
+			else if(get_number_bets(user) > 2)	
+				return 4;
 			else
-				return true;
+				return 1;
 		}
 		else
-		{
+		{//0 cumulativ eamount exceeded
 			int total = amount + get_total_amount(user);
 			if(total > 5000)
-				return false;
+				return 0;
 			else
-				return true;
+				return 1;
 		}
 
 	}
@@ -61,6 +67,7 @@ public class BettingManagementDB implements Betting_management{
 		int num_bets = 0;
 		try
 		{
+			session =  HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction(); 
 			Query query = session.createSQLQuery(
 					"select * from bets where user = :name")
@@ -82,6 +89,10 @@ public class BettingManagementDB implements Betting_management{
 		{
 			return 0;
 		}
+		finally
+		{
+			session.close();
+		}
 
 	}
 	//amount of money
@@ -91,6 +102,7 @@ public class BettingManagementDB implements Betting_management{
 		int amount = 0;
 		try
 		{
+			session =  HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction(); 
 			Query query = session.createSQLQuery(
 					"select * from bets where user = :name")
@@ -112,12 +124,17 @@ public class BettingManagementDB implements Betting_management{
 		{
 			return 0;
 		}
+		finally
+		{
+			session.close();
+		}
 	}
 	@Override
 	public List<Bet> get_all_bets(User user) {
 		List<Bet> result = new ArrayList<Bet>();
 		try
 		{
+			session =  HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction(); 
 			System.out.println("name " + user.getUser());
 			Query query = session.createSQLQuery(
@@ -127,17 +144,17 @@ public class BettingManagementDB implements Betting_management{
 			result =  query.list();
 			System.out.println("result " + result.size());
 			session.getTransaction().commit();		 
+			return result;
 			
-			 if(result.size() > 0)
-			 {
-				 return result;
-			 }
-			return null; 
 		}
 		catch(Exception e)
 		{
 			System.out.println("Excpetion " + e );
 			return null;
+		}
+		finally
+		{
+			session.close();
 		}
 	}
 	

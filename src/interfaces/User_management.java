@@ -11,4 +11,6 @@ public interface User_management {
 	public void increment_attempts(String username); 
 	public void reset(String username);
 	public void block_user(String username);
+	public void test_before();
+	public void test_after();
 }

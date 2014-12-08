@@ -50,21 +50,31 @@ public class BettingController {
 		User user = (User) session.getAttribute("user");
 		BettingManagementDB betting_db = new BettingManagementDB();
 		ModelMap model = new ModelMap();
-		boolean valid = betting_db.validate_bet(user,risk,amount);
+		int valid = betting_db.validate_bet(user,risk,amount);
+		System.out.println("valid bet "+ valid);
 		List<Bet> user_bets = new ArrayList<Bet>();
-		if(valid)
+		if(valid == 1)
 		{
 			Bet bet = new Bet(user.getUser(), risk,amount);
 			betting_db.place_bet(bet);
+			System.out.println("placebet");
 			user_bets = betting_db.get_all_bets(user); 
 			model.addAttribute("bet", user_bets);
+			model.addAttribute("message", "Bet was placed successfully");
 			return new ModelAndView("betting", "model", model);
 		}
 		else
 		{
+			if(valid == 0)
+				model.addAttribute("message", "Bet could not be placed, cumulative amount exceeded");
+			else if(valid == 2)
+				model.addAttribute("message", "Bet could not be placed, free accounts can only place low risk bets");
+			else if(valid == 3)
+				model.addAttribute("message", "Bet could not be placed, free accounts can only place bets with 5 Euros or less");
+			else if(valid == 4)
+				model.addAttribute("message", "Bet could not be placed, maximum (3) number of bets have been already placed");
 			user_bets = betting_db.get_all_bets(user); 
 			model.addAttribute("bet", user_bets);
-			model.addAttribute("message", "There was an error placing bet");
 			return new ModelAndView("betting", "model", model);
 		}
 	}

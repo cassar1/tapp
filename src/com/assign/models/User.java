@@ -27,7 +27,7 @@ public  class User {
 	public String surname;
 	public String dob;
 	
-	public int account_type;//0 free, 1 premium
+	public int account_type;//1 free, 2 premium
 	public String credit_card;
 	public String expiry_date;
 	public String cvv;
@@ -171,7 +171,6 @@ public  class User {
 		validate[2] = validate_name(username);
 		validate[3] = validate_password(password);
 		validate[4] = validate_dob(dob);
-		
 		validate[5] = validate_creditnum(credit_card);
 		validate[6] = validate_expiry(expiry_date);
 		if(validate[4] && validate[6])
@@ -190,7 +189,7 @@ public  class User {
 	}
 	public  boolean validate_name(String inp)
 	{
-		Pattern p = Pattern.compile("[a-zA-Z ]");
+		Pattern p = Pattern.compile("^[a-zA-Z]*$");
 	
 		boolean is_good = p.matcher(inp).find();
 		if(inp.isEmpty() || inp == null)
