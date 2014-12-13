@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<!-- <title>Insert title here</title> -->
 
 	<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"  type="text/css" />
 	<script src="<c:url value="/resources/js/jquery.js" />"></script>
@@ -32,7 +32,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Place Bet</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a href="logout.html">Logout</a></li>
       </ul>
 	
     </div><!-- /.navbar-collapse -->

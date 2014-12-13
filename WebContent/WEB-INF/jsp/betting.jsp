@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>Betting</title>
 
 	<style type="text/css">
     .bs-example{
@@ -23,6 +23,7 @@
 </head>
 	<body>
 		<div class="bs-example">
+		<h2>Bets</h2>
 		<div id = "message">
 			${model.message}
 		</div>

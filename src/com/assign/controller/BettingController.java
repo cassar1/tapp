@@ -78,4 +78,27 @@ public class BettingController {
 			return new ModelAndView("betting", "model", model);
 		}
 	}
+	
+
+@RequestMapping(value = "/betting")
+	public ModelAndView get_betting(HttpSession session)
+	{
+		User user = (User) session.getAttribute("user");
+		if (user == null){
+			ModelMap model = new ModelMap();
+			model.addAttribute("message", "Access denied");
+			return new ModelAndView("login", "model", model);
+		}
+		else{
+			ModelMap model = new ModelMap();
+			BettingManagementDB betting = new BettingManagementDB();
+			List<Bet> user_bets = new ArrayList<Bet>();
+			user_bets = betting.get_all_bets(user);
+			System.out.println("User bets length "+ user_bets.size());
+			model.addAttribute("bet", user_bets);
+			model.addAttribute("name", user.getUser());
+			return new ModelAndView("betting", "model", model);
+		}
+	}
+
 }

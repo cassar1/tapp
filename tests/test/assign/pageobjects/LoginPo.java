@@ -34,4 +34,10 @@ public class LoginPo {
 			return false;
 		}
 	}
+	public String getMessage()
+	{
+		WebElement msg = browser.findElement(By.id("message"));
+		String message = msg.getText();
+		return message;
+	}
 }

@@ -55,3 +55,20 @@ Then I should be told that I have reached the maximum cumulative betting amount
 Examples:
 |amt1|amt2|
 |5000|1|
+
+
+Scenario: Verify access restriction for guest users
+Given I am a user who has not yet logged on
+When I try to access the betting screen
+Then I should be refused access
+
+Scenario Outline: Verify that free users can only place low-risk bets
+Given I am a free-account user
+When I try to place a <risklevel> bet of 5 euros
+Then I should be <expected> to bet
+
+Examples:
+|risklevel|expected|
+|low|allowed|
+|medium|not allowed|
+|high|not allowed|

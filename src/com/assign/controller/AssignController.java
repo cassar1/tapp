@@ -229,6 +229,14 @@ public class AssignController {
 		ModelMap m  = new ModelMap();
 		return new ModelAndView("login", "model", m);
 	}
+	@RequestMapping("/logout")
+	public ModelAndView logging_out(HttpSession session)
+	{
+		session.invalidate();
+		ModelMap model = new ModelMap();
+		model.addAttribute("message", "User logged out successfully");
+		return new ModelAndView("login", "model", model);
+	}
 }
 
 

@@ -169,7 +169,58 @@ public class StepDefinitions {
 		browser.quit();
 	}
 
+	@Given("^I am a user who has not yet logged on$")
+	public void I_am_a_user_who_has_not_yet_logged_on() throws Throwable {
+		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		browser = new ChromeDriver();
+	}
 	
+	@When("^I try to access the betting screen$")
+	public void When_I_try_to_access_the_betting_screen() throws Throwable{
+		//the user doesn't have a session
+		browser.get("http://localhost:8080/3222Assign/betting.html");
+		log = new LoginPo(browser);
+	}
+	
+	@Then("^I should be refused access$")
+	public void I_should_be_refused_access() throws Throwable {
+		String message = log.getMessage();
+		boolean access_denied = false;
+		if(message.equals("Access denied"))
+			access_denied = true;
+		assertTrue(access_denied);	
+		browser.quit();
+	}
+	
+	@Given("^I am a free-account user$")
+	public void I_am_a_user_with_a_free_account2() throws Throwable {
+		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		browser = new ChromeDriver();
+		browser.get("http://localhost:8080/3222Assign/login.html");
+		log = new LoginPo(browser);
+		log.login("Jurgen","12345678");
+		betting = new BettingPo(log.browser);
+	}
+	
+	@When("^I try to place a (.*) bet of 5 euros")
+	public void I_try_to_place_a_bet_of_5_euros(String risklevel) throws Throwable {
+		betting.placeBet(risklevel, "5");
+	}
+
+	@Then("^I should be (.*) to bet")
+	public void I_should_be_to_bet(String expected) throws Throwable {
+		String message = betting.check_success(); //free accounts can only place low risk bets
+		boolean allowed = true;
+		boolean messageAllowed = true;
+		switch(expected){
+			case "allowed": allowed = true; break;
+			case "not allowed": allowed = false; break;
+		}
+		if (message.contains("free accounts can only place low risk bets"))
+			messageAllowed = false;
+		
+		assertEquals(messageAllowed, allowed);	
+	}
 	
 	@After
 	public void tearDown() throws Exception {
