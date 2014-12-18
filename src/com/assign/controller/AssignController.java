@@ -101,10 +101,14 @@ public class AssignController {
 		ModelMap model = new ModelMap();
 		if(valid_user)
 		{
-			User u = manager.get_user(new_user.getName());
+			
+			User u = manager.get_user(new_user.getUsername());
 			if(u == null)
 			{
+				System.out.println("TRYING TO REGISTER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				manager.add_user(new_user);
+				System.out.println(new_user.username);
+				System.out.println("REGISTER SUCCESS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				model.addAttribute("message", "Registration was successful");
 				return new ModelAndView("login", "model", model);
 			}
@@ -137,24 +141,25 @@ public class AssignController {
 	
 			if(user.isBlocked())
 			{
-				System.out.println("blocked user");
+				//System.out.println("blocked user");
 				Date last_attempt = user.getLast_attempt();
 				Date current_time;
 				Date time = new Date();
-				System.out.println("Dates");
-				System.out.println(last_attempt);
-				System.out.println(time);
+				//System.out.println("Dates");
+				//System.out.println(last_attempt);
+				//System.out.println(time);
 				Calendar cal = Calendar.getInstance();
 		    	current_time = cal.getTime();
 		    	long diff = time.getTime() - last_attempt.getTime();  
 		    	//System.out.println("current "+current_time.getTime());
 		    	//System.out.println("last atempt "+last_attempt.getTime());
 		    	long diffMinutes = diff / (60 * 1000 ) %60;       
-		    	System.out.println("difference" + diffMinutes);
+		    	//System.out.println("difference" + diffMinutes);
 		    	if(diffMinutes >= 1)
 		    		manager.reset(username);
 		    	else
 		    	{
+		    		
 		    		model.addAttribute("message", "User is blocked");
 					return new ModelAndView("login", "model", model);
 		    	}
@@ -163,24 +168,20 @@ public class AssignController {
 		}
 		else
 		{
+			System.out.println(username +  pass);
+			System.out.println("LOGGING IN INCORRECT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 			model.addAttribute("message", "Incorrect Credentials");
 			return new ModelAndView("login", "model", model);
 		}
 
 			user = manager.validate_login(username, pass);
-			System.out.println("----------------------------------------------");
 			String message;				
 			if(user == null)
 			{
 				user = manager.get_user(username);
-				System.out.println("----------------------------------------------");
 				if(user != null)
 				{
-
 					int attempts =user.getLogin_attempts();
-					System.out.println(attempts);
-					System.out.println(user.isBlocked());
-					System.out.println(user.getLast_attempt());
 					if(attempts == 3)
 						manager.block_user(username);
 					else
@@ -188,6 +189,8 @@ public class AssignController {
 						manager.increment_attempts(username);
 					}
 				}
+				System.out.println(username + " " + pass);
+				System.out.println("LOGGING IN INCORRECT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				model.addAttribute("message", "Incorrect Credentials");
 				
 				return new ModelAndView("login", "model", model);
@@ -200,9 +203,9 @@ public class AssignController {
 				//user.account_type = 2;
 				List<Bet> user_bets = new ArrayList<Bet>();
 				user_bets = betting.get_all_bets(user);
-				System.out.println("User bets length "+ user_bets.size());
+				//System.out.println("User bets length "+ user_bets.size());
 				model.addAttribute("bet", user_bets);
-				message = "Welcome";
+				System.out.println("LOGGINGED IN !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				model.addAttribute("name", user.getUser());
 				return new ModelAndView("betting", "model", model);
 			}

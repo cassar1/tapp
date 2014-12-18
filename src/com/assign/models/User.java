@@ -176,8 +176,8 @@ public  class User {
 		if(validate[4] && validate[6])
 			change_dates();
 		validate[7] = validate_cvv(cvv);
-		for(int i = 0; i < validate.length;i++)
-			System.out.println(validate[i]);
+		/*for(int i = 0; i < validate.length;i++)
+			System.out.println(validate[i]);*/
 		return validate;
 	}
 	public boolean validate_password(String pass)
@@ -189,7 +189,7 @@ public  class User {
 	}
 	public  boolean validate_name(String inp)
 	{
-		Pattern p = Pattern.compile("^[a-zA-Z]*$");
+		Pattern p = Pattern.compile("^[a-zA-Z ]*$");
 	
 		boolean is_good = p.matcher(inp).find();
 		if(inp.isEmpty() || inp == null)
@@ -205,17 +205,17 @@ public  class User {
 		Calendar cal = Calendar.getInstance();
 		
 		Date current = cal.getTime();
-		System.out.println("current "+ current); 
+		//System.out.println("current "+ current); 
 		try 
 		{
 			Date d1 = dateFormat.parse(dob);
-			System.out.println("input date: " + d1);
+			//System.out.println("input date: " + d1);
 			
 			long milli = Math.abs(current.getTime() - d1.getTime());
 			int days = (int)(milli/(1000*60*60*24));
-			System.out.println("days " + days);
+			//System.out.println("days " + days);
 			double years = days/365;
-			System.out.println("years " + years);
+			//System.out.println("years " + years);
 			if(years >= 18)
 				return true;
 			else 
@@ -251,7 +251,7 @@ public  class User {
 	{
 		DateFormat dateFormat = new SimpleDateFormat("MM/yyyy");
 		Calendar cal = Calendar.getInstance();
-		System.out.println(); 
+		//System.out.println(); 
 		Date current = cal.getTime();
 		try 
 		{

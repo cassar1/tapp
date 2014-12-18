@@ -51,13 +51,13 @@ public class BettingController {
 		BettingManagementDB betting_db = new BettingManagementDB();
 		ModelMap model = new ModelMap();
 		int valid = betting_db.validate_bet(user,risk,amount);
-		System.out.println("valid bet "+ valid);
+		//System.out.println("valid bet "+ valid);
 		List<Bet> user_bets = new ArrayList<Bet>();
 		if(valid == 1)
 		{
 			Bet bet = new Bet(user.getUser(), risk,amount);
 			betting_db.place_bet(bet);
-			System.out.println("placebet");
+			//System.out.println("placebet");
 			user_bets = betting_db.get_all_bets(user); 
 			model.addAttribute("bet", user_bets);
 			model.addAttribute("message", "Bet was placed successfully");
@@ -94,7 +94,7 @@ public class BettingController {
 			BettingManagementDB betting = new BettingManagementDB();
 			List<Bet> user_bets = new ArrayList<Bet>();
 			user_bets = betting.get_all_bets(user);
-			System.out.println("User bets length "+ user_bets.size());
+			//System.out.println("User bets length "+ user_bets.size());
 			model.addAttribute("bet", user_bets);
 			model.addAttribute("name", user.getUser());
 			return new ModelAndView("betting", "model", model);

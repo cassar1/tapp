@@ -23,17 +23,17 @@ public class UserManagementDB implements User_management{
 	public UserManagementDB()
 	{
 		
-		System.out.println("here");
+		//System.out.println("here");
 	}
 	
 	@Override
 	public boolean add_user(User u) {
 			session =  HibernateUtil.getSessionFactory().openSession();
 	        session.beginTransaction();
-	        System.out.println("begin adding");
+	        //System.out.println("begin adding");
 	        session.save(u);
 	        session.getTransaction().commit();
-	        System.out.println("finish adding");
+	        //System.out.println("finish adding");
 	        session.close();
 		return true;
 	}
@@ -51,13 +51,14 @@ public class UserManagementDB implements User_management{
 					.setParameter("name", username);
 					List result = query.list();
 			User user = (User) result.get(0);
+
 			session.getTransaction().commit();
 			
 			return user;
 		}
 		catch(Exception e)
 		{
-			System.out.println("Exception" + e);
+			//System.out.println("Exception" + e);
 			return null;
 		}
 		finally
@@ -74,7 +75,7 @@ public class UserManagementDB implements User_management{
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			User user ;
-			System.out.print("username "+username+"  pass "+pass);
+			//System.out.print("username "+username+"  pass "+pass);
 			Query query = session.createSQLQuery(
 					"select * from users u where u.username = :name and u.password = :pass")
 					.addEntity(User.class)
@@ -141,14 +142,14 @@ public class UserManagementDB implements User_management{
 		try
 		{
 			session = HibernateUtil.getSessionFactory().openSession();
-			System.out.println("incrementing");
+			//System.out.println("incrementing");
 			session.beginTransaction();
 			Query query = session.createSQLQuery(
 					"update users set login_attempts = (login_attempts + 1)  where username = :name")
 					.addEntity(User.class)
 					.setParameter("name", username);
 			query.executeUpdate();
-			System.out.println("incrementing");
+			//System.out.println("incrementing");
 			session.getTransaction().commit();	
 		}
 		catch(Exception e)

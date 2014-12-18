@@ -27,10 +27,10 @@ public class BettingManagementDB implements Betting_management{
 	public boolean place_bet(Bet bet) {
 		session =  HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-        System.out.println("begin adding");
+        //System.out.println("begin adding");
         session.save(bet);
         session.getTransaction().commit();
-        System.out.println("finish adding");
+        //System.out.println("finish adding");
         session.close();
         return true;
 	}
@@ -136,13 +136,13 @@ public class BettingManagementDB implements Betting_management{
 		{
 			session =  HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction(); 
-			System.out.println("name " + user.getUser());
+			//System.out.println("name " + user.getUser());
 			Query query = session.createSQLQuery(
 					"Select * from bets where user = :name")
 					.addEntity(Bet.class)
 					.setParameter("name", user.getUser());
 			result =  query.list();
-			System.out.println("result " + result.size());
+			//System.out.println("result " + result.size());
 			session.getTransaction().commit();		 
 			return result;
 			
